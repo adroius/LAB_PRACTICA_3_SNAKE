@@ -39,6 +39,10 @@ public class Mundo {
 
         int botinX = random.nextInt(MUNDO_ANCHO);
         int botinY = random.nextInt(MUNDO_ALTO);
+        while (botinX < 2 && botinY < 2) {
+            botinX = random.nextInt(MUNDO_ANCHO);
+            botinY = random.nextInt(MUNDO_ALTO);
+        }
         while (true) {
             if (campos[botinX][botinY] == false)
                 break;
@@ -47,7 +51,7 @@ public class Mundo {
                 botinX = 0;
                 botinY += 1;
                 if (botinY >= MUNDO_ALTO) {
-                    botinY = 0;
+                    botinY = 2;
                 }
             }
         }

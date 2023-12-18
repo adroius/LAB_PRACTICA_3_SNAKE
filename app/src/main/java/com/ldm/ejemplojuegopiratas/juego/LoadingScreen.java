@@ -28,7 +28,7 @@ public class LoadingScreen extends Pantalla{
         Assets.barcoizquierda = g.newPixmap("izq.png", PixmapFormat.ARGB4444);
         Assets.barcoabajo = g.newPixmap("frente.png", PixmapFormat.ARGB4444);
         Assets.barcoderecha = g.newPixmap("der.png", PixmapFormat.ARGB4444);
-        Assets.tripulacion = g.newPixmap("tripulacion.png", PixmapFormat.ARGB4444);
+        Assets.tripulacion = g.newPixmap("pikachu_plata.png", PixmapFormat.ARGB4444);
         Assets.botin1 = g.newPixmap("pokebola.png", PixmapFormat.ARGB4444);
         Assets.botin2 = g.newPixmap("super.png", PixmapFormat.ARGB4444);
         Assets.botin3 = g.newPixmap("ultra.png", PixmapFormat.ARGB4444);
