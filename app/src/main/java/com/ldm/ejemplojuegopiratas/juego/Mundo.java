@@ -9,8 +9,8 @@ public class Mundo {
     static final float TICK_INICIAL = 0.5f;
     static final float TICK_DECREMENTO = 0.05f;
 
-    public JollyRoger jollyroger;
-    public Botin botin;
+    public Personaje personaje;
+    public Pokeball pokeball;
     public boolean finalJuego = false;
     public int puntuacion = 0;
 
@@ -20,42 +20,42 @@ public class Mundo {
     static float tick = TICK_INICIAL;
 
     public Mundo() {
-        jollyroger = new JollyRoger();
-        colocarBotin();
+        personaje = new Personaje();
+        colocarpokeball();
     }
 
-    private void colocarBotin() {
+    private void colocarpokeball() {
         for (int x = 0; x < MUNDO_ANCHO; x++) {
             for (int y = 0; y < MUNDO_ALTO; y++) {
                 campos[x][y] = false;
             }
         }
 
-        int len = jollyroger.partes.size();
+        int len = personaje.pokemons.size();
         for (int i = 0; i < len; i++) {
-            Tripulacion parte = jollyroger.partes.get(i);
+            Pokemon parte = personaje.pokemons.get(i);
             campos[parte.x][parte.y] = true;
         }
 
-        int botinX = random.nextInt(MUNDO_ANCHO);
-        int botinY = random.nextInt(MUNDO_ALTO);
-        while (botinX < 2 && botinY < 2) {
-            botinX = random.nextInt(MUNDO_ANCHO);
-            botinY = random.nextInt(MUNDO_ALTO);
+        int pokeballX = random.nextInt(MUNDO_ANCHO);
+        int pokeballY = random.nextInt(MUNDO_ALTO);
+        while (pokeballX < 2 && pokeballY < 2) {
+            pokeballX = random.nextInt(MUNDO_ANCHO);
+            pokeballY = random.nextInt(MUNDO_ALTO);
         }
         while (true) {
-            if (campos[botinX][botinY] == false)
+            if (campos[pokeballX][pokeballY] == false)
                 break;
-            botinX += 1;
-            if (botinX >= MUNDO_ANCHO) {
-                botinX = 0;
-                botinY += 1;
-                if (botinY >= MUNDO_ALTO) {
-                    botinY = 2;
+            pokeballX += 1;
+            if (pokeballX >= MUNDO_ANCHO) {
+                pokeballX = 0;
+                pokeballY += 1;
+                if (pokeballY >= MUNDO_ALTO) {
+                    pokeballY = 2;
                 }
             }
         }
-        botin = new Botin(botinX, botinY, random.nextInt(3));
+        pokeball = new Pokeball(pokeballX, pokeballY, random.nextInt(3));
     }
 
     public void update(float deltaTime) {
@@ -67,21 +67,21 @@ public class Mundo {
 
         while (tiempoTick > tick) {
             tiempoTick -= tick;
-            jollyroger.avance();
-            if (jollyroger.comprobarChoque()) {
+            personaje.avance();
+            if (personaje.comprobarChoque()) {
                 finalJuego = true;
                 return;
             }
 
-            Tripulacion head = jollyroger.partes.get(0);
-            if (head.x == botin.x && head.y == botin.y) {
+            Pokemon head = personaje.pokemons.get(0);
+            if (head.x == pokeball.x && head.y == pokeball.y) {
                 puntuacion += INCREMENTO_PUNTUACION;
-                jollyroger.abordaje();
-                if (jollyroger.partes.size() == MUNDO_ANCHO * MUNDO_ALTO) {
+                personaje.addPokemon();
+                if (personaje.pokemons.size() == MUNDO_ANCHO * MUNDO_ALTO) {
                     finalJuego = true;
                     return;
                 } else {
-                    colocarBotin();
+                    colocarpokeball();
                 }
 
                 if (puntuacion % 100 == 0 && tick - TICK_DECREMENTO > 0) {

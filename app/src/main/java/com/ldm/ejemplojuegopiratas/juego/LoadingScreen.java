@@ -24,17 +24,17 @@ public class LoadingScreen extends Pantalla{
         Assets.preparado = g.newPixmap("preparado.png", PixmapFormat.ARGB4444);
         Assets.menupausa = g.newPixmap("menupausa.png", PixmapFormat.ARGB4444);
         Assets.finjuego = g.newPixmap("finjuego.png", PixmapFormat.ARGB4444);
-        Assets.barcoarriba = g.newPixmap("espalda.png", PixmapFormat.ARGB4444);
-        Assets.barcoizquierda = g.newPixmap("izq.png", PixmapFormat.ARGB4444);
-        Assets.barcoabajo = g.newPixmap("frente.png", PixmapFormat.ARGB4444);
-        Assets.barcoderecha = g.newPixmap("der.png", PixmapFormat.ARGB4444);
-        Assets.tripulacion = g.newPixmap("pikachu.png", PixmapFormat.ARGB4444);
-        Assets.botin1 = g.newPixmap("pokebola.png", PixmapFormat.ARGB4444);
-        Assets.botin2 = g.newPixmap("super.png", PixmapFormat.ARGB4444);
-        Assets.botin3 = g.newPixmap("ultra.png", PixmapFormat.ARGB4444);
+        Assets.personajearriba = g.newPixmap("espalda.png", PixmapFormat.ARGB4444);
+        Assets.personajeizquierda = g.newPixmap("izq.png", PixmapFormat.ARGB4444);
+        Assets.personajeabajo = g.newPixmap("frente.png", PixmapFormat.ARGB4444);
+        Assets.personajederecha = g.newPixmap("der.png", PixmapFormat.ARGB4444);
+        Assets.pokemons = g.newPixmap("pikachu.png", PixmapFormat.ARGB4444);
+        Assets.pokeball1 = g.newPixmap("pokebola.png", PixmapFormat.ARGB4444);
+        Assets.pokeball2 = g.newPixmap("super.png", PixmapFormat.ARGB4444);
+        Assets.pokeball3 = g.newPixmap("ultra.png", PixmapFormat.ARGB4444);
         Assets.gameSound = juego.getAudio().nuevaMusica("pokemon.ogg");
         Assets.pulsar = juego.getAudio().nuevoSonido("pulsar.ogg");
-        Assets.ataque = juego.getAudio().nuevoSonido("captura.ogg");
+        Assets.captura = juego.getAudio().nuevoSonido("captura.ogg");
         Assets.derrota = juego.getAudio().nuevoSonido("error.ogg");
 
 

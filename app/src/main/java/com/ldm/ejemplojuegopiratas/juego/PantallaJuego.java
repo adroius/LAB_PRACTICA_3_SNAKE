@@ -2,7 +2,6 @@ package com.ldm.ejemplojuegopiratas.juego;
 
 import java.util.List;
 import android.graphics.Color;
-import android.media.MediaPlayer;
 
 import com.ldm.ejemplojuegopiratas.Juego;
 import com.ldm.ejemplojuegopiratas.Graficos;
@@ -67,10 +66,10 @@ public class PantallaJuego extends Pantalla {
             }
             if(event.type == TouchEvent.TOUCH_DOWN) {
                 if(event.x < 64 && event.y > 416) {
-                    mundo.jollyroger.girarIzquierda();
+                    mundo.personaje.girarIzquierda();
                 }
                 if(event.x > 256 && event.y > 416) {
-                    mundo.jollyroger.girarDerecha();
+                    mundo.personaje.girarDerecha();
                 }
             }
         }
@@ -87,7 +86,7 @@ public class PantallaJuego extends Pantalla {
             antiguaPuntuacion = mundo.puntuacion;
             puntuacion = "" + antiguaPuntuacion;
             if(Configuraciones.sonidoHabilitado)
-                Assets.ataque.play(1);
+                Assets.captura.play(1);
         }
     }
 
@@ -154,53 +153,53 @@ public class PantallaJuego extends Pantalla {
 
     private void drawWorld(Mundo mundo) {
         Graficos g = juego.getGraphics();
-        JollyRoger jollyroger = mundo.jollyroger;
-        Tripulacion head = jollyroger.partes.get(0);
-        Botin botin = mundo.botin;
+        Personaje jollyroger = mundo.personaje;
+        Pokemon head = jollyroger.pokemons.get(0);
+        Pokeball pokeball = mundo.pokeball;
 
 
         Pixmap stainPixmap = null;
-        if(botin.tipo== Botin.TIPO_1)
-            stainPixmap = Assets.botin1;
-        if(botin.tipo == Botin.TIPO_2)
-            stainPixmap = Assets.botin2;
-        if(botin.tipo == Botin.TIPO_3)
-            stainPixmap = Assets.botin3;
-        int x = botin.x * 32;
-        int y = botin.y * 32;
+        if(pokeball.tipo== Pokeball.TIPO_1)
+            stainPixmap = Assets.pokeball1;
+        if(pokeball.tipo == Pokeball.TIPO_2)
+            stainPixmap = Assets.pokeball2;
+        if(pokeball.tipo == Pokeball.TIPO_3)
+            stainPixmap = Assets.pokeball3;
+        int x = pokeball.x * 32;
+        int y = pokeball.y * 32;
         g.drawPixmap(stainPixmap, x, y);
 
-        int len = jollyroger.partes.size();
+        int len = jollyroger.pokemons.size();
         int changePokemon = 0;
         for(int i = 1; i < len; i++) {
-            Tripulacion part = jollyroger.partes.get(i);
+            Pokemon part = jollyroger.pokemons.get(i);
             x = part.x * 32;
             y = part.y * 32;
             if (changePokemon == 0){
-                Assets.tripulacion = g.newPixmap("pikachu.png", Graficos.PixmapFormat.ARGB4444);
+                Assets.pokemons = g.newPixmap("pikachu.png", Graficos.PixmapFormat.ARGB4444);
                 changePokemon++;
             } else if (changePokemon == 1) {
-                Assets.tripulacion = g.newPixmap("turtwig.png", Graficos.PixmapFormat.ARGB4444);
+                Assets.pokemons = g.newPixmap("turtwig.png", Graficos.PixmapFormat.ARGB4444);
                 changePokemon++;
             } else if (changePokemon == 2) {
-                Assets.tripulacion = g.newPixmap("chimchar.png", Graficos.PixmapFormat.ARGB4444);
+                Assets.pokemons = g.newPixmap("chimchar.png", Graficos.PixmapFormat.ARGB4444);
                 changePokemon++;
             } else {
-                Assets.tripulacion = g.newPixmap("piplup.png", Graficos.PixmapFormat.ARGB4444);
+                Assets.pokemons = g.newPixmap("piplup.png", Graficos.PixmapFormat.ARGB4444);
                 changePokemon = 0;
             }
-            g.drawPixmap(Assets.tripulacion, x, y);
+            g.drawPixmap(Assets.pokemons, x, y);
         }
 
         Pixmap headPixmap = null;
-        if(jollyroger.direccion == JollyRoger.ARRIBA)
-            headPixmap = Assets.barcoarriba;
-        if(jollyroger.direccion == JollyRoger.IZQUIERDA)
-            headPixmap = Assets.barcoizquierda;
-        if(jollyroger.direccion == JollyRoger.ABAJO)
-            headPixmap = Assets.barcoabajo;
-        if(jollyroger.direccion == JollyRoger.DERECHA)
-            headPixmap = Assets.barcoderecha;
+        if(jollyroger.direccion == Personaje.ARRIBA)
+            headPixmap = Assets.personajearriba;
+        if(jollyroger.direccion == Personaje.IZQUIERDA)
+            headPixmap = Assets.personajeizquierda;
+        if(jollyroger.direccion == Personaje.ABAJO)
+            headPixmap = Assets.personajeabajo;
+        if(jollyroger.direccion == Personaje.DERECHA)
+            headPixmap = Assets.personajederecha;
         x = head.x * 32 + 16;
         y = head.y * 32 + 16;
         g.drawPixmap(headPixmap, x - headPixmap.getWidth() / 2, y - headPixmap.getHeight() / 2);

@@ -16,19 +16,19 @@ public class Assets {
     public static Pixmap preparado;
     public static Pixmap menupausa;
     public static Pixmap finjuego;
-    public static Pixmap barcoarriba;
-    public static Pixmap barcoizquierda;
-    public static Pixmap barcoabajo;
-    public static Pixmap barcoderecha;
-    public static Pixmap tripulacion;
-    public static Pixmap botin1;
-    public static Pixmap botin2;
-    public static Pixmap botin3;
+    public static Pixmap personajearriba;
+    public static Pixmap personajeizquierda;
+    public static Pixmap personajeabajo;
+    public static Pixmap personajederecha;
+    public static Pixmap pokemons;
+    public static Pixmap pokeball1;
+    public static Pixmap pokeball2;
+    public static Pixmap pokeball3;
 
     public static Musica gameSound;
 
     public static Sonido pulsar;
-    public static Sonido ataque;
+    public static Sonido captura;
     public static Sonido derrota;
 
 }
