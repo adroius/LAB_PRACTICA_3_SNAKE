@@ -232,7 +232,7 @@ public class PantallaJuego extends Pantalla {
         Graficos g = juego.getGraphics();
 
         g.drawPixmap(Assets.finjuego, 62, 100);
-        g.drawPixmap(Assets.botones, 128, 200, 0, 128, 64, 64);
+        g.drawPixmap(Assets.botones, 128, 200, 5, 125, 64, 64);
         g.drawLine(0, 416, 480, 416, Color.BLACK);
     }
 
