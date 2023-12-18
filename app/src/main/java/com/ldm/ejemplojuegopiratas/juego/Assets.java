@@ -1,5 +1,6 @@
 package com.ldm.ejemplojuegopiratas.juego;
 
+import com.ldm.ejemplojuegopiratas.Musica;
 import com.ldm.ejemplojuegopiratas.Pixmap;
 import com.ldm.ejemplojuegopiratas.Sonido;
 
@@ -23,6 +24,8 @@ public class Assets {
     public static Pixmap botin1;
     public static Pixmap botin2;
     public static Pixmap botin3;
+
+    public static Musica gameSound;
 
     public static Sonido pulsar;
     public static Sonido ataque;

@@ -2,6 +2,8 @@ package com.ldm.ejemplojuegopiratas.juego;
 
 import java.util.List;
 import android.graphics.Color;
+import android.media.MediaPlayer;
+
 import com.ldm.ejemplojuegopiratas.Juego;
 import com.ldm.ejemplojuegopiratas.Graficos;
 import com.ldm.ejemplojuegopiratas.Input.TouchEvent;
@@ -48,6 +50,10 @@ public class PantallaJuego extends Pantalla {
     }
 
     private void updateRunning(List<TouchEvent> touchEvents, float deltaTime) {
+        if(Configuraciones.sonidoHabilitado){
+            Assets.gameSound.setLooping(true);
+            Assets.gameSound.play();
+        }
         int len = touchEvents.size();
         for(int i = 0; i < len; i++) {
             TouchEvent event = touchEvents.get(i);
@@ -71,8 +77,10 @@ public class PantallaJuego extends Pantalla {
 
         mundo.update(deltaTime);
         if(mundo.finalJuego) {
-            if(Configuraciones.sonidoHabilitado)
+            if(Configuraciones.sonidoHabilitado){
                 Assets.derrota.play(1);
+                Assets.gameSound.stop();
+            }
             estado = EstadoJuego.FinJuego;
         }
         if(antiguaPuntuacion != mundo.puntuacion) {
@@ -84,6 +92,8 @@ public class PantallaJuego extends Pantalla {
     }
 
     private void updatePaused(List<TouchEvent> touchEvents) {
+        if(Configuraciones.sonidoHabilitado)
+            Assets.gameSound.pause();
         int len = touchEvents.size();
         for(int i = 0; i < len; i++) {
             TouchEvent event = touchEvents.get(i);
@@ -161,10 +171,24 @@ public class PantallaJuego extends Pantalla {
         g.drawPixmap(stainPixmap, x, y);
 
         int len = jollyroger.partes.size();
+        int changePokemon = 0;
         for(int i = 1; i < len; i++) {
             Tripulacion part = jollyroger.partes.get(i);
             x = part.x * 32;
             y = part.y * 32;
+            if (changePokemon == 0){
+                Assets.tripulacion = g.newPixmap("pikachu.png", Graficos.PixmapFormat.ARGB4444);
+                changePokemon++;
+            } else if (changePokemon == 1) {
+                Assets.tripulacion = g.newPixmap("turtwig.png", Graficos.PixmapFormat.ARGB4444);
+                changePokemon++;
+            } else if (changePokemon == 2) {
+                Assets.tripulacion = g.newPixmap("chimchar.png", Graficos.PixmapFormat.ARGB4444);
+                changePokemon++;
+            } else {
+                Assets.tripulacion = g.newPixmap("piplup.png", Graficos.PixmapFormat.ARGB4444);
+                changePokemon = 0;
+            }
             g.drawPixmap(Assets.tripulacion, x, y);
         }
 
